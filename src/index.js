@@ -26,7 +26,7 @@ function* fetchResult() {
 function* addFavorite(action) {
     try{
         yield axios.post('/api/favorite', action.payload);
-        yield put ({type: 'FETCH_RESULT'})
+        yield put ({type: 'FETCH_FAVORITE'})
     } catch (err) {
         console.error('POST not working');
     }
@@ -41,6 +41,15 @@ function* fetchFavorite() {
         console.error('GET favorites not working');
     }
 };
+
+function* updateCategory(action) {
+    try{
+        yield axios.put('/api/category', action.payload);
+        yield put({type: 'SET_CATEGORY'})
+    } catch(err) {
+        console.error('PUT to update not working');
+    }
+}
 
 
 
