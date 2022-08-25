@@ -15,8 +15,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 const sagaMiddleware = createSagaMiddleware();
 
 function* fetchResult() {
+  
     try{
         let response = yield axios.get('/api/giphy');
+        console.log(response.data);
         yield put ({type: 'GET_RESULT', payload: response.data})
     } catch (err) {
         console.error('GET search results not working');
@@ -60,10 +62,10 @@ function* watcherSaga(){
 }
 
 // reducer for search results
-const resultReducer = (state = {}, action) => {
+const resultReducer = (state = [], action) => {
     switch (action.type) {
-        case 'GET_RESULTS':
-            return action.payload
+        case 'GET_RESULT':
+            return action.payload.data
         default:
             return state;
     }
