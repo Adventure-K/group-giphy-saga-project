@@ -5,18 +5,45 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+  const query = `SELECT * FROM "favorite`
+  pool.query(query)
+  .then(response => {
+    res.send(response.data);
+  }).catch(err => {
+    console.error('Favorite GET', err)
+    res.sendStatus(500)
+  })
 });
 
 // add a new favorite
 router.post('/', (req, res) => {
-  res.sendStatus(200);
+  const url = req.body;
+  const queryText = `INSERT INTO "favorite" ("url")
+                    VALUES ($1);`;
+  pool.query(queryText, [url])
+    .then(response => {
+      res.sendStatus(201);
+    }).catch(err => {
+      console.error('Favorite POST', err);
+      res.sendStatus(500)
+    })
 });
 
 // update given favorite with a category id
 router.put('/:favId', (req, res) => {
-  // req.body should contain a category_id to add to this favorite image
-  res.sendStatus(200);
+  const category = req.body.category_id
+  const id = req.params.favId
+  const queryText = `UPDATE "favorite"
+                    SET "category_id = $1
+                    WHERE "id" = $2`
+  const queryValues = [category, id]
+  pool.query(queryText, queryValues)
+    .then(response => {
+      res.sendStatus(200);
+    }).catch(err => {
+      console.error('Favorite PUT', err);
+      res.sendStatus(500)
+    })
 });
 
 // delete a favorite
