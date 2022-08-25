@@ -1,4 +1,5 @@
 import React from 'react';
+import FavItemComp from '../FavItemComp/FavItemComp';
 
 
 
@@ -7,7 +8,7 @@ import React from 'react';
 function FavListComp() {
   return (
     <div>
-
+        <FavItemComp/>
     </div>
   );
 }
