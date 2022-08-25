@@ -7,7 +7,7 @@ import React from 'react';
 function ItemComp() {
   return (
     <div>
-
+      <button>heart</button>
     </div>
   );
 }
