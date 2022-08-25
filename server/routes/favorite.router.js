@@ -5,7 +5,11 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM "favorite`
+  const query = `SELECT "favorite".id, "favorite".url, "category".name FROM "favorite"
+                JOIN "category"
+                ON "category".id = "favorite".category_id
+                GROUP BY "favorite".url, "favorite".id, "category".name
+                ORDER BY "id";`;
   pool.query(query)
   .then(response => {
     res.send(response.data);
