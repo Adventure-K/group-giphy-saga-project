@@ -1,19 +1,34 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
+import {useDispatch} from 'react-redux';
 
-//const [search, setSearch] = useState('')
 
 function FormComp() {
+  
+  const [search, setSearch] = useState('')
+  const dispatch = useDispatch();
+  
+  
+  const searchFunction = (event) => {
+    console.log(search);
+    dispatch({
+      type: 'FETCH_RESULT',
+      payload : search
+    })
+  }
+
+
+
   return (
     <div>
       <input
-        placeholder="search"></input>
-      <button>submit</button>
+        placeholder="search"
+        onChange={(event) => setSearch(event.target.value)}
+        value={search}></input>
+      <button onClick={searchFunction}>submit</button>
     </div>
   );
 }
 
 export default FormComp;
 
-//onChange={(event) => setSearch(event.target.value)}
-//value={search}
