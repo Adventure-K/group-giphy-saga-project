@@ -28,7 +28,7 @@ function* fetchResult(action) {
 function* addFavorite(action) {
     try{
         yield axios.post('/api/favorite', action.payload);
-        yield put ({type: 'FETCH_RESULT'})
+        yield put ({type: 'FETCH_FAVORITE'})
     } catch (err) {
         console.error('POST not working');
     }
@@ -38,7 +38,7 @@ function* addFavorite(action) {
 function* fetchFavorite() {
     try{
         let response = yield axios.get('/api/favorite');
-        yield put ({type: 'FETCH_FAVORITE', payload: response.data})
+        yield put ({type: 'SET_FAVORITE', payload: response.data})
     } catch(err) {
         console.error('GET favorites not working');
     }
@@ -63,7 +63,7 @@ const resultReducer = (state = [], action) => {
 }
 
 const favoriteReducer = (state = [], action) => {
-    if (action.type = 'FETCH_FAVORITE') {
+    if (action.type === 'SET_FAVORITE') {
         return action.payload;
     }
     return state;
