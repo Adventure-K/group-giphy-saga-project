@@ -14,14 +14,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 //saga middleware to run saga and saga logger
 const sagaMiddleware = createSagaMiddleware();
 
-function* fetchResult() {
-  
+function* fetchResult(action) {
+    console.log(action.payload);
     try{
-        let response = yield axios.get('/api/giphy');
-        console.log(response.data);
+        let response = yield axios.get(`/api/giphy/${action.payload}`);
+        // console.log(response.data);
         yield put ({type: 'GET_RESULT', payload: response.data})
     } catch (err) {
-        console.error('GET search results not working');
+        console.error('GET search results not working', err);
     }
 };
 
