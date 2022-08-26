@@ -16,7 +16,7 @@ function ListComp() {
     
     dispatch({
       type: 'NEW_FAVORITE',
-      payload: gif
+      payload: gif.images.original.url
     })
   }
 

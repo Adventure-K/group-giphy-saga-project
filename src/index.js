@@ -26,6 +26,7 @@ function* fetchResult(action) {
 };
 
 function* addFavorite(action) {
+    console.log('action is', action);
     try{
         yield axios.post('/api/favorite', action.payload);
         yield put ({type: 'FETCH_FAVORITE'})
