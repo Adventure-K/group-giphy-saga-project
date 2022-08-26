@@ -10,7 +10,7 @@ function FormComp() {
   
   
   const searchFunction = (event) => {
-    console.log(search);
+    // console.log(search);
     dispatch({
       type: 'FETCH_RESULT',
       payload : search
