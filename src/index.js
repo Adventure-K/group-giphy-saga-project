@@ -74,7 +74,7 @@ const resultReducer = (state = [], action) => {
 const favoriteReducer = (state = [], action) => {
     if (action.type = 'FETCH_FAVORITE') {
         return action.payload;
-    }
+    } else
     return state;
 }
 

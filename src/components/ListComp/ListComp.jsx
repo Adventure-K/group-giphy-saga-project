@@ -7,7 +7,7 @@ function ListComp() {
 
   const dispatch = useDispatch();
 
-  let [addFavorite, setAddFavorite] = useState();
+  // let [addFavorite, setAddFavorite] = useState();
 
   const result = useSelector((store) => store.resultReducer)
   console.log(result)
