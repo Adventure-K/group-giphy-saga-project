@@ -18,7 +18,10 @@ function ListComp() {
           return (
              
               <tr key={gif.id}>
-                <td><img src={gif.images.original.url}></img></td>
+                <td>
+                  <img src={gif.images.original.url}></img>
+                  <button>heart</button>
+                  </td>
               </tr>
             
           )
