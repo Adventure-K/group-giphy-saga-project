@@ -71,13 +71,19 @@ const resultReducer = (state = [], action) => {
     }
 }
 
-
+const favoriteReducer = (state = [], action) => {
+    if (action.type = 'FETCH_FAVORITE') {
+        return action.payload;
+    }
+    return state;
+}
 
 
 // store instance
 const store = createStore(
     combineReducers({
         resultReducer,
+        favoriteReducer
     }),
     applyMiddleware(logger, sagaMiddleware)
 );
