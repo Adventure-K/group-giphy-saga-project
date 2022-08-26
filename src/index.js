@@ -71,6 +71,15 @@ const resultReducer = (state = [], action) => {
     }
 }
 
+const favoriteReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'FETCH_FAVORITE':
+            return action.payload.data
+        default:
+            return state;
+    }
+}
+
 
 
 
@@ -78,6 +87,7 @@ const resultReducer = (state = [], action) => {
 const store = createStore(
     combineReducers({
         resultReducer,
+        favoriteReducer
     }),
     applyMiddleware(logger, sagaMiddleware)
 );
