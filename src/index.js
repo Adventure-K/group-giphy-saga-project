@@ -40,7 +40,7 @@ function* fetchFavorite() {
         let response = yield axios.get('/api/favorite');
         yield put ({type: 'SET_FAVORITE', payload: response.data})
     } catch(err) {
-        console.error('GET favorites not working');
+        console.error('GET favorites not working', err);
     }
 };
 
