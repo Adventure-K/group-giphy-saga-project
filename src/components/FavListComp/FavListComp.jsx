@@ -2,16 +2,23 @@ import React from 'react';
 import FavItemComp from '../FavItemComp/FavItemComp';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+
 
 
 function FavListComp() {
 
   const favList = useSelector(store => store.favoriteReducer)
+  const dispatch = useDispatch();
 
-  // useEffect(() => { // Populate table upon view load (is this description correct?)
-  //   console.log('useEffect GET');
 
-  // }, []);
+  useEffect(() => {
+    console.log('useEffect GET');
+    dispatch({
+      type: 'FETCH_FAVORITE'
+    })
+    console.log('favList:', favList);
+  }, []);
 
 
   return (
